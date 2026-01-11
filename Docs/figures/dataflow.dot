@@ -1,0 +1,14 @@
+digraph dataflow {
+  rankdir=LR;
+  node [shape=box, style=filled, fillcolor="#f2f2f2", color="#333333"];
+  ESP32 [label="ESP32\n(DHT sensor)\nFirmware: Ascon_ESP32.ino", fillcolor="#e6f7ff"];
+  AP [label="WiFi Access Point\n(Hotspot or AP)", fillcolor="#fff4e6"];
+  Laptop [label="Laptop\nFlask Receiver: laptop_receiver.py\nascon_cli", fillcolor="#e6ffe6"];
+  Logs [label="esp32_logs/data.json\nArchive", fillcolor="#fff0f5"];
+  Tools [label="Tools\ngui_viewer.py / terminal_viewer.py", fillcolor="#f9f9f9"];
+
+  ESP32 -> AP [label="HTTP POST (Ascon AEAD)"];
+  AP -> Laptop [label="TCP/IP"];
+  Laptop -> Logs [label="Append JSON"];
+  Laptop -> Tools [label="Serve / Provide files"];
+}
