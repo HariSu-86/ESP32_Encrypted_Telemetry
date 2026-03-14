@@ -167,6 +167,64 @@ python terminal_viewer.py
 
 ---
 
+## System Demonstration
+
+This section showcases the ESP32 Encrypted Telemetry System in action, demonstrating data flow, monitoring tools, and security features.
+
+### Flask Server Receiver
+
+The `laptop_receiver.py` server running on the host computer receives encrypted telemetry data from ESP32 devices over HTTP, decrypts it using Ascon-128a, and logs it to JSON files.
+
+![Flask Server Receiver](Docs/images/01-laptop_receiver.png)
+
+---
+
+### Terminal Viewer
+
+Real-time monitoring of encrypted telemetry data via the terminal-based viewer, displaying received sensor readings and processing status.
+
+![Terminal Viewer](Docs/images/02-terminal_viewer.png)
+
+---
+
+### JSON Log File
+
+Decrypted sensor data is logged in JSON format for audit trails, analysis, and long-term storage. Each entry includes timestamp, device ID, sensor readings, and integrity verification status.
+
+![JSON Log File](Docs/images/03-json_log_file.png)
+
+---
+
+### Integrity Check Failures
+
+The system detects and logs instances where message authentication fails, indicating potential tampering or corrupted transmissions.
+
+**Integrity Check Failure in Terminal Output:**
+
+![Integrity Check Failure - Terminal](Docs/images/04-integrity_check_failure_terminal.png)
+
+**Integrity Check Failure in JSON Log:**
+
+![Integrity Check Failure - JSON Log](Docs/images/05-integrity_failure_json_log.png)
+
+---
+
+### GUI Viewer
+
+The Tkinter-based GUI viewer provides a user-friendly interface for monitoring multiple ESP32 devices, displaying real-time sensor data in a tabular format with device-specific status indicators.
+
+![GUI Viewer](Docs/images/06-gui_viewer.png)
+
+---
+
+### Failed Integrity Check in GUI
+
+The GUI viewer clearly indicates failed integrity checks with visual warnings, helping operators quickly identify and investigate security anomalies.
+
+![Failed Integrity Check - GUI](Docs/images/07-failed_integrity_check_gui.png)
+
+---
+
 ## Security Overview
 
 ### Ascon-128a AEAD
